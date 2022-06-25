@@ -96,6 +96,15 @@ app.post('/contactUs', async (req, res) => {
 
 })
 
+app.post('/matches/get-images', (req,res)=>{
+    try {
+        console.log("dasdad ;_",req,body);
+        res.send("adasdad")
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
+
 httpServer.listen(process.env.PORT || 5000, () => {
     console.log(`server is running on https://apicricketlivescore.herokuapp.com`);
 })
