@@ -96,6 +96,6 @@ app.post('/contactUs', async (req, res) => {
 
 })
 
-httpServer.listen(8080, () => {
+httpServer.listen(process.env.PORT || 5000, () => {
     console.log(`server is running on https://apicricketlivescore.herokuapp.com`);
 })
