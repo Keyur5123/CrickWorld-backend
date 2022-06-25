@@ -24,7 +24,7 @@ const io = new Server(httpServer, {
 
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: "*",
         credentials: true
     })
 );
@@ -97,5 +97,5 @@ app.post('/contactUs', async (req, res) => {
 })
 
 httpServer.listen(4000, () => {
-    console.log(`server is running on http://localhost:4000`);
+    console.log(`server is running on https://apicricketlivescore.herokuapp.com`);
 })
