@@ -10,17 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "express-http-proxy": "^1.6.3",
-    "http": "^0.0.1-security",
     "mongoose": "^6.3.5",
     "node-fetch": "^3.2.4",
-    "nodemon": "^2.0.16",
-    "path": "^0.12.7",
-    "serve": "^13.0.2",
-    "socket.io": "^4.5.1"
+    "nodemon": "^2.0.16"
   }
 }

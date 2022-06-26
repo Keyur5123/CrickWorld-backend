@@ -5,22 +5,7 @@ import fetch from "node-fetch"
 import conn from "./db/db.js"
 import User from "./model/suggestions.js"
 
-import { createServer } from "http";
-import { Server } from "socket.io";
-
 const app = express()
-
-const httpServer = createServer(app);
-
-const io = new Server(httpServer, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["Access-Control-Allow-Origin"],
-        credentials: true
-    }
-});
-
 
 app.use(
     cors({
@@ -31,22 +16,6 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-
-io.on('connection', function (socket) {
-    console.log('a user connected');
-
-    socket.emit('greeting-from-server', {
-        greeting: 'Hello Client'
-    });
-    // socket.on('greeting-from-client', function (message) {
-    //     console.log(message);
-    // });
-
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
-});
 
 
 app.get('/match-score/', async (req, res) => {
@@ -96,15 +65,29 @@ app.post('/contactUs', async (req, res) => {
 
 })
 
-app.post('/matches/get-images', (req,res)=>{
-    try {
-        console.log("dasdad ;_",req,body);
-        res.send("adasdad")
-    } catch (error) {
-        res.status(400).send(error);
-    }
-})
+// app.get('/matches/get-images/:TeamName', async(req,res)=>{
+//     try {
+//         const url = `http://cricnet.co.in/ManagePlaying/TeamImages/${req.params.TeamName}`
+//         console.log("Aaaaaa",url);
 
-httpServer.listen(process.env.PORT || 5000, () => {
+//         let a = await fetch(`http://cricnet.co.in/ManagePlaying/TeamImages/${req.params.TeamName}`)
+//         let fimgb = Buffer.from(await a.arrayBuffer())
+//         // console.log("fimgb :- ",fimgb.toString("base64"));
+//         let b = String.fromCharCode(fimgb)
+//         console.log("b :- ",b);
+//         return fimgb;
+//         // .then((response) => response.json())
+//         // .then((data) => {
+//         //     const buffer = Buffer.alloc(10)
+//         //     buffer.write(data.toString(),"utf-8")
+//         //     console.log("data :- ",buffer[0])
+//         // })
+//         // .catch((err) => console.log(err));
+//     } catch (error) {
+//         res.status(400).send(error);    
+//     }
+// })
+
+app.listen(process.env.PORT || 5000, () => {
     console.log(`server is running on https://apicricketlivescore.herokuapp.com`);
 })
