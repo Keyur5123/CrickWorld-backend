@@ -3,7 +3,7 @@ import cors from "cors"
 import bodyParser from "body-parser"
 import fetch from "node-fetch"
 import conn from "./db/db.js"
-import User from "./model/suggestions.js"
+import Users_Suggestions from "./model/suggestions.js"
 
 const app = express()
 
@@ -47,35 +47,41 @@ app.get('/matches/current-matches', async (req, res) => {
         .catch((err) => console.log(err));
 })
 
-app.post('/contactUs', async (req, res) => {
+app.post('/contactUs',async (req, res) => {
     try {
-
-        const suggestion = await new User(req.body)
-        console.log("body data :- -- ", suggestion);
-
+        const suggestion = await new Users_Suggestions(req.body)
+        console.log("aaaaaaaaaaaaaaaaa",suggestion);
+        
         await suggestion.save((err) => {
             if (err) {
-                console.log("err", err);
+                return res.status(400).json({ error : "Error occure while saving suggestion!.."})
             }
-        }).then(res => res.status(200).send("res saved" + savedRes));
+        })
+        res.status(201).json({ message : "suggestion accepted!..." })
+
+        if(!req.body){
+            res.status(204).json({ message : "No data received!...." })
+        }
 
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send(error.message);
     }
 
 })
 
+
 // app.get('/matches/get-images/:TeamName', async(req,res)=>{
 //     try {
 //         const url = `http://cricnet.co.in/ManagePlaying/TeamImages/${req.params.TeamName}`
-//         console.log("Aaaaaa",url);
+//         console.log("Aaaaaa",url);  
 
 //         let a = await fetch(`http://cricnet.co.in/ManagePlaying/TeamImages/${req.params.TeamName}`)
 //         let fimgb = Buffer.from(await a.arrayBuffer())
-//         // console.log("fimgb :- ",fimgb.toString("base64"));
+//         console.log("fimgb :- ",fimgb.toString("base64"));
 //         let b = String.fromCharCode(fimgb)
 //         console.log("b :- ",b);
 //         return fimgb;
+
 //         // .then((response) => response.json())
 //         // .then((data) => {
 //         //     const buffer = Buffer.alloc(10)

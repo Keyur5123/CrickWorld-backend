@@ -17,6 +17,4 @@ const SuggestionSchema = new mongoose.Schema({
     }
 });
 
-const User = mongoose.model("user", SuggestionSchema);
-
-export default User;
+export default mongoose.model("Users_Suggestions", SuggestionSchema);
