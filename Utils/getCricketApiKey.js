@@ -1,7 +1,7 @@
 export const getCricketApiKey = () => {
     const AllApiKey = [process.env.KEYUR_CRICKDATA,process.env.DAD_CRICKDATA,process.env.VISHWAS_CRICKDATA,process.env.VISHVAS_CRICKDATA,process.env.KSHMA_CRICKDATA,process.env.SMIT_CRICKDATA]
 
-    for(let i=1 ; i<=151 ; i++ ){
+    for(let i=1 ; i<=155 ; i++ ){
         AllApiKey.push(process.env[`fake${i}`])
     }
     // console.log("AllApiKey :-",AllApiKey);
