@@ -129,6 +129,16 @@ app.post('/crick__ScoreBoard', async (req, res) => {
         .catch(err => console.log(err))
 })
 
+
+app.get('/cricket-news', async (req, res) => { 
+    await fetch('https://newsapi.org/v2/everything?q=cricket&page=2&apiKey=6b7ec074a4504f248afc6be98c4881d0')
+        .then(res => res.json())
+        .then(data => {
+           res.status(201).send(data)
+        })
+        .catch(err => console.log(err))
+})
+
 app.post('/crick__matchSquad', async (req, res) => {
     const apiKey = getCricketApiKey();
 
@@ -160,6 +170,6 @@ app.post('/player-info', async (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 5001, () => {
     console.log(`server is running on https://apicricketlivescore.herokuapp.com`);
 })
