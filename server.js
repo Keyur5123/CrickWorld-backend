@@ -6,7 +6,8 @@ import bodyParser from "body-parser"
 import fetch from "node-fetch"
 import conn from "./db/db.js"
 import Users_Suggestions from "./model/suggestions.js"
-import { getCricketApiKey } from "./Utils/getCricketApiKey.js"
+// import { getCricketApiKey } from "./Utils./getCricketApiKey.js"
+import { getCricketApiKey } from "./Utils/getCricketApiKey.js";
 import dotenv from "dotenv"
 
 const app = express()
@@ -101,7 +102,6 @@ app.post('/matches/get-images/:TeamAImage/:TeamBImage', async (req, res) => {
 // })
 
 app.get('/crick__currentMatches', async (req, res) => {
-
     const apiKey = getCricketApiKey();
     await fetch(`https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}&offset=0`)
         .then((response) => response.json())
@@ -131,7 +131,11 @@ app.post('/crick__ScoreBoard', async (req, res) => {
 
 
 app.get('/cricket-news', async (req, res) => { 
-    await fetch('https://newsapi.org/v2/everything?q=cricket&page=2&apiKey=6b7ec074a4504f248afc6be98c4881d0')
+    
+    // https://newsapi.org/v2/top-headlines?country=us&apiKey=API_KEY
+    // https://newsapi.org/v2/everything?q=cricket&page=2&apiKey=6b7ec074a4504f248afc6be98c4881d0
+
+    await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=6b7ec074a4504f248afc6be98c4881d0')
         .then(res => res.json())
         .then(data => {
            res.status(201).send(data)
@@ -170,6 +174,6 @@ app.post('/player-info', async (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.listen(process.env.PORT || 5001, () => {
-    console.log(`server is running on https://apicricketlivescore.herokuapp.com`);
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`server is running on http://localhost:5000`);
 })
