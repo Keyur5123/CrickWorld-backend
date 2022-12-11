@@ -177,18 +177,16 @@ const AllApiKeys = [
 //     return AllApiKeys;
 // }
 
-var g1 = new Date();
+// var g1 = new Date();
 
- 
+// setInterval(()=>{
 
-setInterval(()=>{
-
-    if (g1.getHours() == 23 || g1.getHours() == 24) {
-        console.log('this this this this this :::---',g1.getHours(),g1.getMinutes())  
-        acc = 0;
-        hits = 0;
-    }
-},50000)
+//     if (g1.getHours() == 23 || g1.getHours() == 24) {
+//         console.log('this this this this this :::---',g1.getHours(),g1.getMinutes())  
+//         acc = 0;
+//         hits = 0;
+//     }
+// },50000)
 
 export const getCricketApiKey = () => {
     
